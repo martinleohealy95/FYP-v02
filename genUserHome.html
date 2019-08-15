@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>FYP</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- Le styles -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+
+            @media (max-width: 980px) {
+                /* Enable use of floated navbar text */
+                .navbar-text.pull-right {
+                    float: none;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                }
+            }
+        </style>
+        <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+<script src="../assets/js/html5shiv.js"></script>
+<![endif]-->
+
+        <!-- Fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="../assets/ico/favicon.png">
+
+
+    </head>
+
+    <body>
+
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-firestore.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+https://firebase.google.com/docs/web/setup#config-web-app -->
+
+        <script>
+
+
+            // Required for side-effects
+
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyAl3D9c7esFAtfVsriqO_EXlmZmmANeMos",
+                authDomain: "finalyearproject-bcdbb.firebaseapp.com",
+                databaseURL: "https://finalyearproject-bcdbb.firebaseio.com",
+                projectId: "finalyearproject-bcdbb",
+                storageBucket: "",
+                messagingSenderId: "979879119169",
+                appId: "1:979879119169:web:4a8540be1392444b"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+            db.collection("comments").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    
+                    var ps = document.getElementsByClassName("comment");
+                    var comments = doc.data().comments;
+
+                    var arrayLength = comments.length;
+                    for (var i = 0; i < arrayLength; i++) {
+                        console.log(comments[i]);
+
+                        
+                        
+                            ps[i].innerHTML = comments[i];
+                        
+                    }
+                });
+            });
+        </script>
+
+
+
+
+        <div style="background-color:red" class="navbar navbar-inverse navbar-fixed-top">
+            <div style="background-color:red" class="navbar-inner">
+                <div style="background-color:#428bca" class="container-fluid">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="#"><img src="img/images.jpg" width="60" height="30"> <span style="color:white">Hood Alert</span></a>
+                    <div class="nav-collapse collapse">
+                        <p class="navbar-text pull-right">
+
+                        </p>
+                        <ul class="nav">
+                            <li class="active"><a href="genUserHome.html">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>s
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">My User Profile</li>
+                            <li class="active"><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li class="nav-header">My Votes</li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li class="nav-header">My Portfolio</li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                        </ul>
+                    </div><!--/.well -->
+                </div><!--/span-->
+                <div class="span9">
+                    <div class="hero-unit">
+                        <h1>Home</h1>
+                        <p>This is where normal(ish) users are going to do their stuff</p>
+                        <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span4">
+                            <h2>Bad News</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p><a class="btn" href="#">View details &raquo;</a></p>
+                        </div><!--/span-->
+                        <div class="span4">
+                            <h2>More Bad News</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p><a class="btn" href="#">View details &raquo;</a></p>
+                        </div><!--/span-->
+                        <div class="span4">
+                            <h2>Good news for people who like bad news</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p><a class="btn" href="#">View details &raquo;</a></p>
+                        </div><!--/span-->
+                    </div><!--/row-->
+                    <div class="row-fluid">
+                        <div class="span4">
+                            <h2>Heading</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p><a class="btn" href="#">View details &raquo;</a></p>
+                        </div><!--/span-->
+                        <div class="span4">
+                            <h2>Heading</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p><a class="btn" href="#">View details &raquo;</a></p>
+                        </div><!--/span-->
+                        <div class="span4">
+                            <h2>Heading</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p><a class="btn" href="#">View details &raquo;</a></p>
+                        </div><!--/span-->
+                    </div><!--/row-->
+                </div><!--/span-->
+            </div><!--/row-->
+            <br><br> 
+
+
+
+            <div id="googleMap" style="width:100%;height:400px;"></div>
+
+            <script>
+                function myMap() {
+                    var mapProp= {
+                        center:new google.maps.LatLng(51.89078229896356,-8.494502305984499),
+                        zoom:15,
+                    };
+                    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                }
+            </script>
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl3D9c7esFAtfVsriqO_EXlmZmmANeMos&callback=myMap"></script>
+
+
+
+
+            <hr> 
+            <div class="container">
+
+
+
+                <!-- comments container -->
+                <div class="comment_block">
+
+
+
+
+                    <!-- used by #{user} to create a new comment -->
+                    <div class="create_new_comment">
+
+                        <!-- current #{user} avatar -->
+                        <div class="user_avatar">
+                            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg">
+                        </div><!-- the input field --><div class="input_comment">
+                        <input type="text" placeholder="Join the conversation..">
+                        </div>
+
+                    </div>
+                    <br><br><br>
+
+
+                    <form action="/html/tags/html_form_tag_action.cfm" method="post">
+                        <div>
+                            <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
+                                Hey... say something!
+                            </textarea>
+                        </div>
+                        <input type="submit" value="Submit">
+                    </form>
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 class="page-header">Comments</h2>
+                        <section class="comment-list">
+                            <!-- First Comment -->
+                            <article class="row">
+                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                    <figure class="thumbnail">
+                                        <img src="img/oldlady.jpg" />
+                                        <figcaption class="text-center">Agnes</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-md-10 col-sm-10">
+                                    <div class="panel panel-default arrow left">
+                                        <div class="panel-body">
+                                            <header class="text-left">
+                                                <div class="comment-user"><i class="fa fa-user"></i> Agnes</div>
+                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2018</time>
+                                            </header>
+                                            <div class="comment-post">
+                                                <p class= "comment">
+
+                                                </p>
+                                            </div>
+                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- Second Comment Reply -->
+                            <article class="row">
+                                <div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">
+                                    <figure class="thumbnail">
+                                        <img src="img/man.png" />
+                                        <figcaption class="text-center">John</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-md-9 col-sm-9">
+                                    <div class="panel panel-default arrow left">
+                                        <div class="panel-heading right">Reply</div>
+                                        <div class="panel-body">
+                                            <header class="text-left">
+                                                <div class="comment-user"><i class="fa fa-user"></i> John</div>
+                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 17, 2018</time>
+                                            </header>
+                                            <div class="comment-post">
+                                                <p class="comment">
+                                                   
+                                                </p>
+                                            </div>
+                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- Third Comment -->
+                            <article class="row">
+                                <div class="col-md-10 col-sm-10">
+                                    <div class="panel panel-default arrow right">
+                                        <div class="panel-body">
+                                            <header class="text-right">
+                                                <div class="comment-user"><i class="fa fa-user"></i> Agnes</div>
+                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 01, 2018</time>
+                                            </header>
+                                            <div class="comment-post">
+                                            <p class="comment">
+
+                                            </div>
+                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                    <figure class="thumbnail">
+                                        <img src="img/oldlady.jpg" />
+                                        <figcaption class="text-center">Agnes</figcaption>
+                                    </figure>
+                                </div>
+                            </article>
+                            <!-- Fourth Comment -->
+                            <article class="row">
+                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                    <figure class="thumbnail">
+                                        <img src="img/woman2.png" />
+                                        <figcaption class="text-center">Lisa</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <div class="panel panel-default arrow left">
+                                        <div class="panel-body">
+                                            <header class="text-left">
+                                                <div class="comment-user"><i class="fa fa-user"></i> Lisa</div>
+                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Nov 29, 2018</time>
+                                            </header>
+                                            <div class="comment-post">
+                                                                                    <p class="comment">
+
+                                                   
+                                                </p>
+                                            </div>
+                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Fifth Comment -->
+                            <article class="row">
+                                <div class="col-md-10 col-sm-10">
+                                    <div class="panel panel-default arrow right">
+                                        <div class="panel-body">
+                                            <header class="text-right">
+                                                <div class="comment-user"><i class="fa fa-user"></i> James</div>
+                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Nov 20, 2018</time>
+                                            </header>
+                                            <div class="comment-post">
+                                                                                               <p class="comment">
+
+                                                 
+
+                                            </div>
+                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                    <figure class="thumbnail">
+                                        <img  src="img/man2.jpg" />
+                                        <figcaption class="text-center">James</figcaption>
+                                    </figure>
+                                </div>
+                            </article>
+                            <!-- Sixth Comment Reply -->
+                            <article class="row">
+                                <div class="col-md-9 col-sm-9 col-md-offset-1 col-md-pull-1 col-sm-offset-0">
+                                    <div class="panel panel-default arrow right">
+                                        <div class="panel-heading">Reply</div>
+                                        <div class="panel-body">
+                                            <header class="text-right">
+                                                <div class="comment-user"><i class="fa fa-user"></i> Agnes</div>
+                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Oct 31, 2018</time>
+                                            </header>
+                                            <div class="comment-post">
+                                                                                                <p class="comment">
+
+                                                    
+                                                </p>
+                                            </div>
+                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-md-pull-1 hidden-xs">
+                                    <figure class="thumbnail">
+                                        <img  src="img/oldlady.jpg" />
+                                        <figcaption class="text-center">Agnes</figcaption>
+                                    </figure>
+                                </div>
+                            </article>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+
+            <footer>
+                <center><br><p>&copy; Company 2013</p></center>
+            </footer>
+
+        </div><!--/.fluid-container-->
+
+        <!-- Le javascript
+================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--<script src="../assets/js/jquery.js"></script>
+<script src="../assets/js/bootstrap-transition.js"></script>
+<script src="../assets/js/bootstrap-alert.js"></script>
+<script src="../assets/js/bootstrap-modal.js"></script>
+<script src="../assets/js/bootstrap-dropdown.js"></script>
+<script src="../assets/js/bootstrap-scrollspy.js"></script>
+<script src="../assets/js/bootstrap-tab.js"></script>
+<script src="../assets/js/bootstrap-tooltip.js"></script>
+<script src="../assets/js/bootstrap-popover.js"></script>
+<script src="../assets/js/bootstrap-button.js"></script>
+<script src="../assets/js/bootstrap-collapse.js"></script>
+<script src="../assets/js/bootstrap-carousel.js"></script>
+<script src="../assets/js/bootstrap-typeahead.js"></script> -->
+
+    </body>
+</html>
