@@ -1,0 +1,22 @@
+   <!-- used by #{user} to create a new comment -->
+                    <div class="create_new_comment">
+
+                        <!-- current #{user} avatar -->
+                        <div class="user_avatar">
+                            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg">
+                        </div><!-- the input field --><div class="input_comment">
+                        <input type="text" placeholder="Join the conversation..">
+                        </div>
+
+                    </div>
+                    <br><br><br>
+
+
+                    <form action="/html/tags/html_form_tag_action.cfm" method="post">
+                        <div>
+                            <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
+                                Hey... say something!
+                            </textarea>
+                        </div>
+                        <input type="submit" value="Submit">
+                    </form>
