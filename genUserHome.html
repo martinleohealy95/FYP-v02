@@ -66,20 +66,31 @@ https://firebase.google.com/docs/web/setup#config-web-app -->
 
             // Your web app's Firebase configuration
             var firebaseConfig = {
-                apiKey: "AIzaSyAl3D9c7esFAtfVsriqO_EXlmZmmANeMos",
-                authDomain: "finalyearproject-bcdbb.firebaseapp.com",
-                databaseURL: "https://finalyearproject-bcdbb.firebaseio.com",
-                projectId: "finalyearproject-bcdbb",
+                // Martin Firebase
+//                apiKey: "AIzaSyAl3D9c7esFAtfVsriqO_EXlmZmmANeMos",
+//                authDomain: "finalyearproject-bcdbb.firebaseapp.com",
+//                databaseURL: "https://finalyearproject-bcdbb.firebaseio.com",
+//                projectId: "finalyearproject-bcdbb",
+//                storageBucket: "",
+//                messagingSenderId: "979879119169",
+//                appId: "1:979879119169:web:4a8540be1392444b"
+
+                // Adam Firebase
+                apiKey: "AIzaSyCSm5R1vLJQ5IcMIMwhHaxvuX_Su42pYdQ",
+                authDomain: "martincollege-86fe3.firebaseapp.com",
+                databaseURL: "https://martincollege-86fe3.firebaseio.com",
+                projectId: "martincollege-86fe3",
                 storageBucket: "",
-                messagingSenderId: "979879119169",
-                appId: "1:979879119169:web:4a8540be1392444b"
+                messagingSenderId: "406759677344",
+                appId: "1:406759677344:web:c697269fe84bd643"
+
             };
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig);
             var db = firebase.firestore();
             db.collection("comments").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    
+
                     var ps = document.getElementsByClassName("comment");
                     var comments = doc.data().comments;
 
@@ -87,10 +98,10 @@ https://firebase.google.com/docs/web/setup#config-web-app -->
                     for (var i = 0; i < arrayLength; i++) {
                         console.log(comments[i]);
 
-                        
-                        
-                            ps[i].innerHTML = comments[i];
-                        
+
+
+                        ps[i].innerHTML = comments[i];
+
                     }
                 });
             });
@@ -279,7 +290,7 @@ https://firebase.google.com/docs/web/setup#config-web-app -->
                                             </header>
                                             <div class="comment-post">
                                                 <p class="comment">
-                                                   
+
                                                 </p>
                                             </div>
                                             <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
@@ -297,7 +308,7 @@ https://firebase.google.com/docs/web/setup#config-web-app -->
                                                 <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 01, 2018</time>
                                             </header>
                                             <div class="comment-post">
-                                            <p class="comment">
+                                                <p class="comment">
 
                                             </div>
                                             <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
@@ -327,9 +338,9 @@ https://firebase.google.com/docs/web/setup#config-web-app -->
                                                 <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Nov 29, 2018</time>
                                             </header>
                                             <div class="comment-post">
-                                                                                    <p class="comment">
+                                                <p class="comment">
 
-                                                   
+
                                                 </p>
                                             </div>
                                             <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
@@ -348,9 +359,9 @@ https://firebase.google.com/docs/web/setup#config-web-app -->
                                                 <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Nov 20, 2018</time>
                                             </header>
                                             <div class="comment-post">
-                                                                                               <p class="comment">
+                                                <p class="comment">
 
-                                                 
+
 
                                             </div>
                                             <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
@@ -375,9 +386,9 @@ https://firebase.google.com/docs/web/setup#config-web-app -->
                                                 <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Oct 31, 2018</time>
                                             </header>
                                             <div class="comment-post">
-                                                                                                <p class="comment">
+                                                <p class="comment">
 
-                                                    
+
                                                 </p>
                                             </div>
                                             <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
