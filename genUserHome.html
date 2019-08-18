@@ -8,12 +8,15 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-firestore.js"></script>
+
         <!-- Le styles -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
         <link href="bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery-1.11.1.min.js"></script>
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -50,30 +53,61 @@
     </head>
 
     <body>
-
-
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-firestore.js"></script>
-
-        <!-- TODO: Add SDKs for Firebase products that you want to use
-https://firebase.google.com/docs/web/setup#config-web-app -->
-
         <script>
+            function addCommentToPage(comment) {
+                var article = $("<article>").addClass("row");
 
+                // Profile pic and user name
+                var profileInfoRoot = $("<div>").addClass("col-md-2").addClass("col-sm-2").addClass("hidden-xs");
+                var figure = $("<figure>").addClass("thumbnail");
+                var img = $("<img>").attr("src", "img/oldlady.jpg");
+                var figcaption = $("<figcaption>").addClass("text-center")
+                figcaption.append(comment.username)
+                figure.append(img)
+                figure.append(figcaption)
+                profileInfoRoot.append(figure)
+
+
+                var div1 = $("<div>").addClass("col-md-10").addClass("col-sm-10")
+                var div2 = $("<div>").addClass("panel").addClass("panel-default").addClass("arrow").addClass("left")
+                div1.append(div2)
+                var div3 = $("<div>").addClass("panel-body")
+                div2.append(div3)
+                var header = $("<header>").addClass("text-left")
+                div3.append(header)
+                var detailsDiv = $("<div>").addClass("comment-user")
+                header.append(detailsDiv)
+                detailsDiv.append(comment.username)
+                var time = $("<div>")
+                time.append(comment.time)
+                header.append(time)
+
+
+                var commentBodyDiv = $("<div>").addClass("comment-post")
+                var p = $("<p>").addClass("comment")
+                p.append(comment.text)
+                commentBodyDiv.append(p)
+                div3.append(commentBodyDiv)
+
+
+                article.append(profileInfoRoot)
+                article.append(div1)
+
+                $("#comment-list").append(article)
+            }
 
             // Required for side-effects
 
             // Your web app's Firebase configuration
             var firebaseConfig = {
                 // Martin Firebase
-//                apiKey: "AIzaSyAl3D9c7esFAtfVsriqO_EXlmZmmANeMos",
-//                authDomain: "finalyearproject-bcdbb.firebaseapp.com",
-//                databaseURL: "https://finalyearproject-bcdbb.firebaseio.com",
-//                projectId: "finalyearproject-bcdbb",
-//                storageBucket: "",
-//                messagingSenderId: "979879119169",
-//                appId: "1:979879119169:web:4a8540be1392444b"
+                //                apiKey: "AIzaSyAl3D9c7esFAtfVsriqO_EXlmZmmANeMos",
+                //                authDomain: "finalyearproject-bcdbb.firebaseapp.com",
+                //                databaseURL: "https://finalyearproject-bcdbb.firebaseio.com",
+                //                projectId: "finalyearproject-bcdbb",
+                //                storageBucket: "",
+                //                messagingSenderId: "979879119169",
+                //                appId: "1:979879119169:web:4a8540be1392444b"
 
                 // Adam Firebase
                 apiKey: "AIzaSyCSm5R1vLJQ5IcMIMwhHaxvuX_Su42pYdQ",
@@ -90,18 +124,12 @@ https://firebase.google.com/docs/web/setup#config-web-app -->
             var db = firebase.firestore();
             db.collection("comments").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-
-                    var ps = document.getElementsByClassName("comment");
                     var comments = doc.data().comments;
 
                     var arrayLength = comments.length;
                     for (var i = 0; i < arrayLength; i++) {
                         console.log(comments[i]);
-
-
-
-                        ps[i].innerHTML = comments[i];
-
+                        addCommentToPage(comments[i])
                     }
                 });
             });
@@ -246,162 +274,7 @@ https://firebase.google.com/docs/web/setup#config-web-app -->
                 <div class="row">
                     <div class="col-md-8">
                         <h2 class="page-header">Comments</h2>
-                        <section class="comment-list">
-                            <!-- First Comment -->
-                            <article class="row">
-                                <div class="col-md-2 col-sm-2 hidden-xs">
-                                    <figure class="thumbnail">
-                                        <img src="img/oldlady.jpg" />
-                                        <figcaption class="text-center">Agnes</figcaption>
-                                    </figure>
-                                </div>
-                                <div class="col-md-10 col-sm-10">
-                                    <div class="panel panel-default arrow left">
-                                        <div class="panel-body">
-                                            <header class="text-left">
-                                                <div class="comment-user"><i class="fa fa-user"></i> Agnes</div>
-                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2018</time>
-                                            </header>
-                                            <div class="comment-post">
-                                                <p class= "comment">
-
-                                                </p>
-                                            </div>
-                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <!-- Second Comment Reply -->
-                            <article class="row">
-                                <div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">
-                                    <figure class="thumbnail">
-                                        <img src="img/man.png" />
-                                        <figcaption class="text-center">John</figcaption>
-                                    </figure>
-                                </div>
-                                <div class="col-md-9 col-sm-9">
-                                    <div class="panel panel-default arrow left">
-                                        <div class="panel-heading right">Reply</div>
-                                        <div class="panel-body">
-                                            <header class="text-left">
-                                                <div class="comment-user"><i class="fa fa-user"></i> John</div>
-                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 17, 2018</time>
-                                            </header>
-                                            <div class="comment-post">
-                                                <p class="comment">
-
-                                                </p>
-                                            </div>
-                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <!-- Third Comment -->
-                            <article class="row">
-                                <div class="col-md-10 col-sm-10">
-                                    <div class="panel panel-default arrow right">
-                                        <div class="panel-body">
-                                            <header class="text-right">
-                                                <div class="comment-user"><i class="fa fa-user"></i> Agnes</div>
-                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 01, 2018</time>
-                                            </header>
-                                            <div class="comment-post">
-                                                <p class="comment">
-
-                                            </div>
-                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-2 hidden-xs">
-                                    <figure class="thumbnail">
-                                        <img src="img/oldlady.jpg" />
-                                        <figcaption class="text-center">Agnes</figcaption>
-                                    </figure>
-                                </div>
-                            </article>
-                            <!-- Fourth Comment -->
-                            <article class="row">
-                                <div class="col-md-2 col-sm-2 hidden-xs">
-                                    <figure class="thumbnail">
-                                        <img src="img/woman2.png" />
-                                        <figcaption class="text-center">Lisa</figcaption>
-                                    </figure>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <div class="panel panel-default arrow left">
-                                        <div class="panel-body">
-                                            <header class="text-left">
-                                                <div class="comment-user"><i class="fa fa-user"></i> Lisa</div>
-                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Nov 29, 2018</time>
-                                            </header>
-                                            <div class="comment-post">
-                                                <p class="comment">
-
-
-                                                </p>
-                                            </div>
-                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <!-- Fifth Comment -->
-                            <article class="row">
-                                <div class="col-md-10 col-sm-10">
-                                    <div class="panel panel-default arrow right">
-                                        <div class="panel-body">
-                                            <header class="text-right">
-                                                <div class="comment-user"><i class="fa fa-user"></i> James</div>
-                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Nov 20, 2018</time>
-                                            </header>
-                                            <div class="comment-post">
-                                                <p class="comment">
-
-
-
-                                            </div>
-                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-2 hidden-xs">
-                                    <figure class="thumbnail">
-                                        <img  src="img/man2.jpg" />
-                                        <figcaption class="text-center">James</figcaption>
-                                    </figure>
-                                </div>
-                            </article>
-                            <!-- Sixth Comment Reply -->
-                            <article class="row">
-                                <div class="col-md-9 col-sm-9 col-md-offset-1 col-md-pull-1 col-sm-offset-0">
-                                    <div class="panel panel-default arrow right">
-                                        <div class="panel-heading">Reply</div>
-                                        <div class="panel-body">
-                                            <header class="text-right">
-                                                <div class="comment-user"><i class="fa fa-user"></i> Agnes</div>
-                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Oct 31, 2018</time>
-                                            </header>
-                                            <div class="comment-post">
-                                                <p class="comment">
-
-
-                                                </p>
-                                            </div>
-                                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-2 col-md-pull-1 hidden-xs">
-                                    <figure class="thumbnail">
-                                        <img  src="img/oldlady.jpg" />
-                                        <figcaption class="text-center">Agnes</figcaption>
-                                    </figure>
-                                </div>
-                            </article>
+                        <section id="comment-list">
                         </section>
                     </div>
                 </div>
