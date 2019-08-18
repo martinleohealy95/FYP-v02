@@ -257,15 +257,19 @@
             <script>
                 function submitComment() {
                     var commentUsername = $("#comment_username").val()
-                    var comment = $("#new_comment_text").val()
-                    console.log("new comment from " + commentUsername)
-                    console.log("new comment " + comment)
-                    addCommentToPage({
+                    var commentText = $("#new_comment_text").val()
+                    var comment = {
                         "profile_pic": "https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg",
-                        "text": comment,
+                        "text": commentText,
                         "time": "Dec 16, 2018",
                         "username": commentUsername
-                    })
+                    }
+                    
+                    db.collection("comments").doc("YvYvtYNaQ6B6sIGVLeNM").update({
+                        comments: firebase.firestore.FieldValue.arrayUnion(comment)
+                    });
+
+                    addCommentToPage(comment)
                 }
             </script>
 
