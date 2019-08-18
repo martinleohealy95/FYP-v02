@@ -224,9 +224,6 @@
 
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl3D9c7esFAtfVsriqO_EXlmZmmANeMos&callback=myMap"></script>
 
-
-
-
             <hr> 
             <div class="container">
                 <div class="row">
@@ -239,28 +236,38 @@
 
                 <!-- comments container -->
                 <div class="comment_block">
-                    <!-- used by #{user} to create a new comment -->
                     <div class="create_new_comment">
-
-                        <!-- current #{user} avatar -->
                         <div class="user_avatar">
                             <img src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg">
-                        </div><!-- the input field --><div class="input_comment">
-                        <input type="text" placeholder="Join the conversation..">
                         </div>
-
+                        <div class="input_comment">
+                            <input id="comment_username" type="text" placeholder="Join the conversation..">
+                        </div>
                     </div>
 
-                    <form action="/html/tags/html_form_tag_action.cfm" method="post">
+                    <form>
                         <div>
-                            <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
-                                Hey... say something!
-                            </textarea>
+                            <textarea name="comments" id="new_comment_text" style="font-family:sans-serif;font-size:1.2em;" placeholder="Hey... say something"></textarea>
                         </div>
-                        <input type="submit" value="Submit">
+                        <input type="button" value="Submit" onclick="submitComment()">
                     </form>
                 </div>
             </div>
+
+            <script>
+                function submitComment() {
+                    var commentUsername = $("#comment_username").val()
+                    var comment = $("#new_comment_text").val()
+                    console.log("new comment from " + commentUsername)
+                    console.log("new comment " + comment)
+                    addCommentToPage({
+                        "profile_pic": "https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg",
+                        "text": comment,
+                        "time": "Dec 16, 2018",
+                        "username": commentUsername
+                    })
+                }
+            </script>
 
             <footer>
                 <center><br><p>&copy; Company 2013</p></center>
